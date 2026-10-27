@@ -1,0 +1,51 @@
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#F5F3EA;color:#0E3B4A;font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.7;font-size:16px}
+a{color:#0E3B4A;text-underline-offset:3px}
+a:focus-visible{outline:2px solid #B8F23C;box-shadow:0 0 0 5px #0E3B4A;outline-offset:2px;border-radius:4px}
+::selection{background:#B8F23C;color:#0E3B4A}
+
+.lg-head{background:#0E3B4A;color:#F5F3EA}
+.lg-head .in{max-width:860px;margin:0 auto;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.lg-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#F5F3EA;font-family:'Sora',sans-serif;font-weight:700;font-size:20px;letter-spacing:-0.01em}
+.lg-logo img{width:34px;height:34px;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.lg-logo:hover img{transform:rotate(360deg)}
+.lg-logo span{font-weight:500;color:#A9C6CD}
+.lg-back{background:#B8F23C;color:#0E3B4A;text-decoration:none;font-weight:600;font-size:14px;padding:11px 20px;border-radius:999px;transition:transform .15s ease}
+.lg-back:hover{transform:translateY(-2px)}
+
+.lg-hero{background:#0E3B4A;color:#F5F3EA;padding:28px 0 64px;border-radius:0 0 40px 40px;position:relative;overflow:hidden}
+.lg-hero .in{max-width:860px;margin:0 auto;padding:0 24px;position:relative}
+.lg-hero h1{margin:8px 0 10px;font-family:'Sora',sans-serif;font-weight:800;font-size:clamp(32px,5vw,50px);line-height:1.08;letter-spacing:-0.02em}
+.lg-hero p{margin:0;color:#A9C6CD;font-size:15px}
+.lg-hero .eyebrow{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#B8F23C}
+.lg-hero img.mark{position:absolute;right:-120px;top:-90px;width:380px;height:380px;opacity:.07;pointer-events:none}
+
+.lg-main{max-width:860px;margin:0 auto;padding:48px 24px 80px}
+.lg-card{background:#fff;border:1px solid #E1DDCC;border-radius:28px;padding:clamp(24px,5vw,48px);box-shadow:0 24px 60px rgba(14,59,74,.08)}
+.lg-card h2{margin:36px 0 10px;font-family:'Sora',sans-serif;font-weight:700;font-size:21px;line-height:1.25;letter-spacing:-0.01em;display:flex;gap:12px;align-items:baseline}
+.lg-card h2:first-child{margin-top:0}
+.lg-card h2 .n{flex:none;width:30px;height:30px;border-radius:50%;background:#0E3B4A;color:#B8F23C;font-size:14px;display:inline-flex;align-items:center;justify-content:center;transform:translateY(-1px)}
+.lg-card p{margin:0 0 14px;color:#2F4F59}
+.lg-card ul{margin:0 0 14px;padding-left:22px;color:#2F4F59}
+.lg-card li{margin:0 0 8px}
+.lg-card strong{color:#0E3B4A}
+.lg-data{margin:0 0 14px;padding:0;list-style:none;background:#F5F3EA;border:1px solid #E1DDCC;border-radius:18px;overflow:hidden}
+.lg-data li{margin:0;padding:12px 18px;display:flex;flex-wrap:wrap;gap:4px 14px;border-top:1px solid #E1DDCC;color:#0E3B4A}
+.lg-data li:first-child{border-top:0}
+.lg-data li b{flex:0 0 190px;font-weight:600;color:#3E5A64}
+.lg-note{background:#EEF9D2;border:1px solid #B8F23C;border-radius:18px;padding:16px 18px;color:#0E3B4A;margin:0 0 18px}
+.lg-table{width:100%;border-collapse:collapse;margin:0 0 14px;font-size:15px}
+.lg-table th,.lg-table td{text-align:left;padding:12px 14px;border-bottom:1px solid #E1DDCC;vertical-align:top;color:#2F4F59}
+.lg-table th{font-weight:600;color:#3E5A64;background:#F5F3EA}
+.lg-table-wrap{overflow-x:auto;border:1px solid #E1DDCC;border-radius:18px;margin:0 0 14px}
+.lg-table-wrap .lg-table{margin:0}
+.lg-table-wrap tr:last-child td{border-bottom:0}
+
+.lg-foot{background:#06191F;color:#A9C6CD;padding:32px 0;font-size:14px}
+.lg-foot .in{max-width:860px;margin:0 auto;padding:0 24px;display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;align-items:center}
+.lg-foot nav{display:flex;flex-wrap:wrap;gap:8px 22px}
+.lg-foot a{color:#F5F3EA;text-decoration:none}
+.lg-foot a:hover{text-decoration:underline;text-underline-offset:4px}
+@media (max-width:600px){.lg-data li b{flex-basis:100%}}
+@media print{.lg-head,.lg-foot,.lg-hero img.mark{display:none}.lg-hero{background:none;color:#000;padding:0}.lg-hero p,.lg-hero .eyebrow{color:#333}.lg-card{border:0;box-shadow:none;padding:0}body{background:#fff}}

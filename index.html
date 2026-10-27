@@ -1,0 +1,691 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loopless Agency · Asistente de WhatsApp para tu negocio</title>
+<meta name="description" content="Un asistente que responde, reserva y cancela citas por ti en WhatsApp, las 24 horas. Pide tu auditoría gratuita.">
+<meta name="theme-color" content="#0E3B4A">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Loopless Agency · Asistente de WhatsApp para tu negocio">
+<meta property="og:description" content="Responde, reserva y cancela citas por ti en WhatsApp, las 24 horas. Pide tu auditoría gratuita.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preload" href="assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts.css">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#F5F3EA;font-family:'Inter',system-ui,sans-serif;color:#0E3B4A;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+::selection{background:#B8F23C;color:#0E3B4A}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #B8F23C;box-shadow:0 0 0 5px #0E3B4A;outline-offset:2px}
+button{font-family:inherit;cursor:pointer}
+
+/* ---------- Botones ---------- */
+a.btn{position:relative;overflow:hidden;isolation:isolate;transition:transform .2s ease,box-shadow .2s ease}
+a.btn::after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-130%);transition:transform .7s ease}
+a.btn:hover{transform:translateY(-3px)}
+a.btn:hover::after{transform:translateX(130%)}
+a.btn:active{transform:translateY(-1px) scale(.99)}
+a.link{transition:opacity .2s}
+a.link:hover{opacity:.75}
+.cta-glow{animation:glow 3.2s ease-in-out infinite}
+
+/* ---------- Isotipo ---------- */
+.spin-slow{animation:spin 48s linear infinite}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+.logo img{transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.logo:hover img{transform:rotate(360deg)}
+
+/* ---------- Animaciones ---------- */
+@keyframes blink{0%,80%,100%{opacity:.25}40%{opacity:1}}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes heroRise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes heroSlide{from{opacity:0;transform:translateX(40px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes bubbleIn{from{opacity:0;transform:translateY(10px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(184,242,60,.55)}100%{box-shadow:0 0 0 14px rgba(184,242,60,0)}}
+@keyframes glow{0%,100%{box-shadow:0 14px 36px rgba(184,242,60,.22)}50%{box-shadow:0 14px 52px rgba(184,242,60,.5)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(50px,-40px) scale(1.12)}}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(7px)}}
+@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.18)}100%{transform:scale(1)}}
+.rise{animation:rise .35s ease both}
+.float1{animation:floaty 5s ease-in-out infinite}
+.float2{animation:floaty 6s ease-in-out infinite .8s}
+.pulse{animation:pulse 2s ease-out infinite}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#0E3B4A;margin:0 2px;animation:blink 1.2s infinite}
+.dot:nth-child(2){animation-delay:.2s}
+.dot:nth-child(3){animation-delay:.4s}
+
+.hi{animation:heroRise .9s cubic-bezier(.2,.7,.2,1) both;animation-delay:var(--hd,0s)}
+.hphone{animation:heroSlide 1s cubic-bezier(.2,.7,.2,1) .25s both}
+.hb{opacity:0;animation:bubbleIn .55s cubic-bezier(.2,.7,.2,1) both;animation-delay:var(--bd,1s)}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none}
+.b1{width:440px;height:440px;background:#B8F23C;opacity:.12;left:-220px;top:38%;animation:drift 20s ease-in-out infinite}
+.b2{width:420px;height:420px;background:#2B8AA3;opacity:.28;right:12%;bottom:-170px;animation:drift 26s ease-in-out infinite reverse}
+
+/* Aparición al hacer scroll (solo si hay JS) */
+.js [data-reveal]{opacity:0;transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s);will-change:opacity,transform}
+.js [data-reveal=up]{transform:translateY(30px)}
+.js [data-reveal=left]{transform:translateX(-36px)}
+.js [data-reveal=right]{transform:translateX(36px)}
+.js [data-reveal=zoom]{transform:scale(.93)}
+.js [data-reveal=bar]{opacity:1;transform:scaleX(0);transform-origin:left;transition:transform 1.3s cubic-bezier(.2,.7,.2,1) .25s}
+.js [data-reveal].in{opacity:1;transform:none}
+.ico-pop{transform:scale(1)}
+.js .ico-pop{transform:scale(0)}
+.js .in .ico-pop,.js .ico-pop.in{animation:pop .55s cubic-bezier(.2,.7,.2,1) .35s both}
+.js .in .arrow-n{animation:nudge 1.8s ease-in-out 1s infinite}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .js [data-reveal],.js [data-reveal=bar],.js .ico-pop,.hb,.hi,.hphone{opacity:1!important;transform:none!important}
+}
+
+/* ---------- Layout ---------- */
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.h2{margin:0;font-family:'Sora',sans-serif;font-weight:800;font-size:clamp(30px,4.2vw,48px);line-height:1.1;letter-spacing:-0.02em}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.chip{font-size:12px;font-weight:600;color:#B8F23C;border:1px solid rgba(184,242,60,.4);border-radius:999px;padding:6px 12px}
+.pill{font-size:13px;font-weight:600;color:#F5F3EA;background:rgba(255,255,255,.08);border-radius:999px;padding:7px 14px}
+
+/* ---------- Sliders ---------- */
+input[type=range]{-webkit-appearance:none;appearance:none;background:transparent;height:28px;width:100%;margin:0;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:999px;background:linear-gradient(to right,#0E3B4A var(--p,50%),#E1DDCC var(--p,50%))}
+input[type=range]::-moz-range-track{height:8px;border-radius:999px;background:linear-gradient(to right,#0E3B4A var(--p,50%),#E1DDCC var(--p,50%))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;margin-top:-9px;border-radius:50%;background:#B8F23C;border:3px solid #0E3B4A;box-shadow:0 4px 12px rgba(14,59,74,.3);transition:transform .15s}
+input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:#B8F23C;border:3px solid #0E3B4A;box-shadow:0 4px 12px rgba(14,59,74,.3);transition:transform .15s}
+input[type=range]:active::-webkit-slider-thumb{transform:scale(1.18)}
+input[type=range]:active::-moz-range-thumb{transform:scale(1.18)}
+
+/* ---------- Antes / Después ---------- */
+.ba-row{display:grid;grid-template-columns:minmax(0,1fr) 56px minmax(0,1fr);align-items:stretch}
+.ba-arrow{display:flex;align-items:center;justify-content:center}
+.ba-before{background:#EFECDF;border:1.5px dashed #9AB0B6;border-radius:20px;padding:24px;display:flex;gap:14px;align-items:flex-start;font-size:17px;line-height:1.45;color:#0E3B4A}
+.ba-after{background:#0E3B4A;border-radius:20px;padding:24px;display:flex;gap:14px;align-items:flex-start;font-size:17px;line-height:1.45;color:#F5F3EA;font-weight:500;box-shadow:0 16px 36px rgba(14,59,74,.22)}
+.ba-ico{flex:none;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+@media (max-width:760px){.ba-row{grid-template-columns:minmax(0,1fr)}.ba-arrow{transform:rotate(90deg);padding:6px 0}}
+
+/* ---------- Pasos ---------- */
+.step-w{height:100%}
+.step{position:relative;height:100%;background:#08262F;border:1px solid rgba(255,255,255,.12);border-radius:28px;padding:34px;display:flex;flex-direction:column;gap:18px;overflow:hidden;transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .35s,box-shadow .35s}
+.step:hover{transform:translateY(-8px);border-color:rgba(184,242,60,.55);box-shadow:0 28px 56px rgba(0,0,0,.4)}
+.step-n{position:absolute;right:22px;top:6px;font-family:'Sora',sans-serif;font-weight:800;font-size:84px;line-height:1;color:rgba(184,242,60,.12);transition:color .35s,transform .35s}
+.step:hover .step-n{color:rgba(184,242,60,.28);transform:scale(1.08)}
+.step-ico{width:56px;height:56px;border-radius:18px;background:#B8F23C;display:flex;align-items:center;justify-content:center;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.step:hover .step-ico{transform:rotate(-8deg) scale(1.08)}
+.step h3{margin:0;font-family:'Sora',sans-serif;font-weight:700;font-size:22px}
+.step p{margin:0;font-size:16px;line-height:1.6;color:#C9DCE0}
+.step-foot{margin-top:auto;padding-top:14px;border-top:1px solid rgba(255,255,255,.1);font-size:14px;line-height:1.5;color:#F5F3EA}
+.step-foot strong{color:#B8F23C}
+
+/* ---------- FAQ ---------- */
+.faq-item{background:#fff;border:1px solid #E1DDCC;border-radius:20px;overflow:hidden;transition:border-color .25s,box-shadow .25s}
+.faq-item:hover,.faq-item.open{border-color:#0E3B4A}
+.faq-item.open{box-shadow:0 14px 34px rgba(14,59,74,.1)}
+.faq-q{width:100%;border:0;background:transparent;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 24px;text-align:left;color:#0E3B4A;min-height:44px}
+.faq-q span.t{font-family:'Sora',sans-serif;font-weight:600;font-size:17px;line-height:1.35}
+.faq-badge{flex:none;width:34px;height:34px;border-radius:50%;background:#EFECDF;display:flex;align-items:center;justify-content:center;transition:transform .3s ease,background .3s}
+.faq-item.open .faq-badge{transform:rotate(45deg);background:#0E3B4A}
+.faq-item.open .faq-badge svg{stroke:#B8F23C}
+.faq-wrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
+.faq-item.open .faq-wrap{grid-template-rows:1fr}
+.faq-a{min-height:0;overflow:hidden;visibility:hidden;transition:visibility 0s .35s}
+.faq-item.open .faq-a{visibility:visible;transition-delay:0s}
+.faq-a p{margin:0;padding:0 24px 24px;font-size:16px;line-height:1.65;color:#3E5A64;max-width:680px}
+
+/* ---------- Pie ---------- */
+.foot a{color:#F5F3EA;text-decoration:none}
+.foot a:hover{text-decoration:underline;text-underline-offset:4px}
+</style>
+</head>
+<body>
+
+<!-- ========== HERO ========== -->
+<header style="background:#0E3B4A;color:#F5F3EA;position:relative;overflow:hidden;border-radius:0 0 44px 44px">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <img class="spin-slow" src="assets/isotipo.svg" alt="" aria-hidden="true" width="640" height="640" style="position:absolute;right:-200px;top:-140px;opacity:.07;pointer-events:none">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(245,243,234,.07) 1px,transparent 1.2px);background-size:26px 26px;pointer-events:none"></div>
+
+  <div class="wrap hi" style="position:relative;padding-top:22px;padding-bottom:22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+    <a class="logo" href="./" aria-label="Loopless Agency, inicio">
+      <img src="assets/isotipo.svg" width="38" height="38" alt="">
+      <span style="font-family:'Sora',sans-serif;font-weight:700;font-size:21px;letter-spacing:-0.01em">Loopless <span style="font-weight:500;color:#A9C6CD">Agency</span></span>
+    </a>
+    <a class="btn" href="https://calendly.com/agencyloopless/30min" style="background:#B8F23C;color:#0E3B4A;text-decoration:none;font-weight:600;font-size:14px;padding:12px 22px;border-radius:999px">Auditoría gratuita</a>
+  </div>
+
+  <div class="wrap" style="position:relative;padding-top:48px;padding-bottom:116px;display:flex;flex-wrap:wrap;align-items:center;gap:72px">
+    <div style="flex:1 1 480px;min-width:0;display:flex;flex-direction:column;gap:30px">
+      <div class="hi" style="--hd:.05s;display:inline-flex;align-self:flex-start;align-items:center;gap:10px;background:rgba(184,242,60,.1);border:1px solid rgba(184,242,60,.4);color:#B8F23C;font-size:13px;font-weight:600;padding:8px 16px;border-radius:999px"><span class="pulse" style="width:8px;height:8px;border-radius:50%;background:#B8F23C"></span>Asistente de WhatsApp para tu negocio</div>
+      <h1 class="hi" style="--hd:.15s;margin:0;font-family:'Sora',sans-serif;font-weight:800;font-size:clamp(36px,5.4vw,62px);line-height:1.06;letter-spacing:-0.025em">Cada mensaje sin responder es <span style="color:#B8F23C">una cita que se va a tu competencia.</span></h1>
+      <p class="hi" style="--hd:.3s;margin:0;font-size:clamp(17px,2vw,20px);line-height:1.55;color:#C9DCE0;max-width:560px">Un asistente que responde, reserva y cancela citas por ti en WhatsApp, las 24 horas. Tú trabajas; él atiende los mensajes.</p>
+      <div class="hi" style="--hd:.45s;display:flex;flex-direction:column;gap:16px;align-items:flex-start">
+        <a class="btn cta-glow" href="https://calendly.com/agencyloopless/30min" style="background:#B8F23C;color:#0E3B4A;text-decoration:none;font-family:'Sora',sans-serif;font-weight:700;font-size:18px;padding:20px 34px;border-radius:16px">Quiero mi auditoría gratuita</a>
+        <span style="font-size:14px;color:#A9C6CD">Gratis · 30 minutos · Sin compromiso · Descubre cuánto estás perdiendo</span>
+        <a class="link" href="#calculadora" style="font-size:15px;font-weight:600;color:#F5F3EA;text-decoration:underline;text-underline-offset:4px">O calcula primero lo que pierdes ↓</a>
+      </div>
+    </div>
+
+    <div class="hphone" style="flex:0 1 380px;min-width:0;width:100%;max-width:380px;margin:0 auto;position:relative">
+      <div class="float1" style="position:absolute;right:20px;top:-26px;z-index:2;background:#B8F23C;color:#0E3B4A;font-size:13px;font-weight:700;padding:10px 14px;border-radius:14px;box-shadow:0 12px 28px rgba(0,0,0,.3)">Nueva cita · mañana 18:00</div>
+      <div class="float2" style="position:absolute;left:20px;bottom:-26px;z-index:2;background:#F5F3EA;color:#0E3B4A;font-size:13px;font-weight:700;padding:10px 14px;border-radius:14px;box-shadow:0 12px 28px rgba(0,0,0,.3)">Cancelación gestionada</div>
+      <div style="background:#08262F;border:1px solid rgba(255,255,255,.14);border-radius:32px;padding:16px;display:flex;flex-direction:column;gap:12px;box-shadow:0 36px 70px rgba(0,0,0,.4)">
+        <div style="display:flex;align-items:center;gap:10px;padding:4px 6px 12px;border-bottom:1px solid rgba(255,255,255,.1)">
+          <div style="width:40px;height:40px;border-radius:50%;background:#B8F23C;display:flex;align-items:center;justify-content:center"><img src="assets/isotipo-dark.svg" width="22" height="22" alt=""></div>
+          <div style="display:flex;flex-direction:column"><span style="font-weight:600;font-size:15px;color:#F5F3EA">Tu negocio</span><span style="font-size:12px;color:#B8F23C">en línea · 23:47</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;padding:6px 2px 4px">
+          <div class="hb" style="--bd:1.0s;align-self:flex-start;max-width:82%;background:#F5F3EA;color:#0E3B4A;font-size:15px;line-height:1.4;padding:10px 14px;border-radius:16px 16px 16px 4px">Hola, ¿tenéis hueco mañana por la tarde?</div>
+          <div class="hb" style="--bd:1.9s;align-self:flex-end;max-width:82%;background:#B8F23C;color:#0E3B4A;font-size:15px;line-height:1.4;padding:10px 14px;border-radius:16px 16px 4px 16px">¡Hola! Sí. Mañana tengo libre a las 16:00 y a las 18:00. ¿Cuál prefieres?</div>
+          <div class="hb" style="--bd:2.9s;align-self:flex-start;max-width:82%;background:#F5F3EA;color:#0E3B4A;font-size:15px;line-height:1.4;padding:10px 14px;border-radius:16px 16px 16px 4px">A las 18:00</div>
+          <div class="hb" style="--bd:3.7s;align-self:flex-end;max-width:82%;background:#B8F23C;color:#0E3B4A;font-size:15px;line-height:1.4;padding:10px 14px;border-radius:16px 16px 4px 16px">Reservado. Mañana a las 18:00 te esperamos.</div>
+        </div>
+        <div class="hb" style="--bd:4.6s;background:rgba(184,242,60,.12);border:1px solid rgba(184,242,60,.35);color:#B8F23C;font-size:13px;font-weight:600;text-align:center;padding:11px 12px;border-radius:12px">Cita cerrada en segundos. Tú estabas durmiendo.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="position:relative;border-top:1px solid rgba(255,255,255,.1);background:rgba(8,38,47,.5)">
+    <div class="wrap" style="padding-top:22px;padding-bottom:22px;display:flex;flex-wrap:wrap;gap:12px 40px;justify-content:space-between;font-size:15px;font-weight:500;color:#C9DCE0">
+      <span style="display:flex;align-items:center;gap:10px"><span style="width:8px;height:8px;border-radius:50%;background:#B8F23C"></span>Responde en segundos, de día, de noche y en festivo</span>
+      <span style="display:flex;align-items:center;gap:10px"><span style="width:8px;height:8px;border-radius:50%;background:#B8F23C"></span>Reserva, mueve y cancela citas solo</span>
+      <span style="display:flex;align-items:center;gap:10px"><span style="width:8px;height:8px;border-radius:50%;background:#B8F23C"></span>Tú no tocas nada técnico</span>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ========== INTERACTIVO ========== -->
+<section id="calculadora" style="background-color:#F5F3EA;background-image:radial-gradient(rgba(14,59,74,.1) 1px,transparent 1.2px);background-size:24px 24px;padding:96px 0 104px">
+  <div class="wrap" style="display:flex;flex-direction:column;gap:48px">
+    <div data-reveal="up" style="max-width:740px;display:flex;flex-direction:column;gap:16px">
+      <span class="eyebrow" style="color:#3E5A64">Haz la cuenta. Es incómoda, pero real.</span>
+      <h2 class="h2">¿Cuánto te cuesta cada mensaje que nadie contesta?</h2>
+      <p style="margin:0;font-size:18px;line-height:1.55;color:#3E5A64">Tres números y treinta segundos. Verás lo que llevas meses perdiendo sin darte cuenta y, justo al lado, qué habría pasado con Loopless atendiendo tu WhatsApp.</p>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:stretch">
+      <!-- Calculadora -->
+      <div data-reveal="left" style="flex:1 1 440px;min-width:0;background:#fff;border:1px solid #E1DDCC;border-radius:28px;padding:34px;display:flex;flex-direction:column;gap:26px;box-shadow:0 24px 60px rgba(14,59,74,.1)">
+        <span style="display:flex;align-items:center;gap:10px;font-family:'Sora',sans-serif;font-weight:700;font-size:15px;color:#3E5A64"><span style="width:28px;height:28px;border-radius:50%;background:#0E3B4A;color:#B8F23C;display:flex;align-items:center;justify-content:center;font-size:14px">1</span>Tu problema, en euros</span>
+
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+            <label for="msgs" style="font-weight:600;font-size:15px;line-height:1.35">Clientes nuevos que te escriben por WhatsApp cada semana</label>
+            <output id="msgsOut" for="msgs" style="font-family:'Sora',sans-serif;font-weight:700;font-size:22px;white-space:nowrap">30</output>
+          </div>
+          <input id="msgs" type="range" min="5" max="150" step="1" value="30">
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+            <label for="value" style="font-weight:600;font-size:15px;line-height:1.35">¿Cuánto vale de media una cita?</label>
+            <output id="valueOut" for="value" style="font-family:'Sora',sans-serif;font-weight:700;font-size:22px;white-space:nowrap">60 €</output>
+          </div>
+          <input id="value" type="range" min="10" max="400" step="5" value="60">
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <span id="shareLabel" style="font-weight:600;font-size:15px;line-height:1.35">¿Cuántos de esos mensajes llegan fuera de tu horario o cuando estás ocupado y no puedes contestar?</span>
+          <div id="shareOpts" role="group" aria-labelledby="shareLabel" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+            <label for="noshows" style="font-weight:600;font-size:15px;line-height:1.35">Huecos vacíos al mes por cancelaciones de última hora o plantones</label>
+            <output id="noshowsOut" for="noshows" style="font-family:'Sora',sans-serif;font-weight:700;font-size:22px;white-space:nowrap">5</output>
+          </div>
+          <input id="noshows" type="range" min="0" max="40" step="1" value="5">
+        </div>
+
+        <div style="background:#0E3B4A;color:#F5F3EA;border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden" aria-live="polite">
+          <img class="spin-slow" src="assets/isotipo.svg" alt="" aria-hidden="true" width="220" height="220" style="position:absolute;right:-60px;bottom:-70px;opacity:.1">
+          <span style="position:relative;font-size:14px;color:#A9C6CD">Estás dejando escapar aproximadamente</span>
+          <div style="position:relative;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap">
+            <span style="font-family:'Sora',sans-serif;font-weight:800;font-size:clamp(38px,6vw,56px);line-height:1;color:#B8F23C;letter-spacing:-0.02em;font-variant-numeric:tabular-nums"><span data-bind="monthly">0</span> €</span>
+            <span style="font-size:16px;color:#C9DCE0">al mes</span>
+          </div>
+          <span style="position:relative;font-size:15px;color:#F5F3EA;font-weight:600"><span data-bind="annual">0</span> € al año · unas <span data-bind="appts">0</span> citas que se van a otro sitio</span>
+          <span style="position:relative;font-size:14px;line-height:1.5;color:#C9DCE0;margin-top:6px">Cada una era alguien que quería pagarte. Escribió, esperó... y acabó reservando con otro.</span>
+        </div>
+        <span style="font-size:12px;line-height:1.5;color:#4C6770">Estimación orientativa: asumimos que 4 de cada 10 personas que no reciben respuesta a tiempo habrían reservado. En la auditoría lo afinamos con tus números reales.</span>
+      </div>
+
+      <!-- Simulador de chat -->
+      <div data-reveal="right" style="flex:1 1 440px;min-width:0;background:#0E3B4A;color:#F5F3EA;border-radius:28px;padding:34px;display:flex;flex-direction:column;gap:20px;box-shadow:0 24px 60px rgba(14,59,74,.28)">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="display:flex;align-items:center;gap:10px;font-family:'Sora',sans-serif;font-weight:700;font-size:15px;color:#A9C6CD"><span style="width:28px;height:28px;border-radius:50%;background:#B8F23C;color:#0E3B4A;display:flex;align-items:center;justify-content:center;font-size:14px">2</span>Lo mismo, con Loopless atendiendo tu WhatsApp</span>
+          <span style="font-size:15px;line-height:1.5;color:#C9DCE0">Elige una situación y mira qué pasa mientras tú no estás.</span>
+        </div>
+
+        <div id="tabs" role="group" aria-label="Situación a simular" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+
+        <div style="background:#08262F;border-radius:22px;padding:16px 18px 18px;min-height:380px;display:flex;flex-direction:column;gap:10px;border:1px solid rgba(255,255,255,.08)">
+          <div style="display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:4px">
+            <div style="width:34px;height:34px;border-radius:50%;background:#B8F23C;display:flex;align-items:center;justify-content:center"><img src="assets/isotipo-dark.svg" width="19" height="19" alt=""></div>
+            <div style="display:flex;flex-direction:column"><span style="font-weight:600;font-size:14px">Tu negocio</span><span style="font-size:11px;color:#B8F23C">asistente activo 24/7</span></div>
+          </div>
+          <div id="intro" style="margin:auto;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;padding:24px 8px">
+            <span style="font-size:16px;line-height:1.5;color:#C9DCE0;max-width:300px">Son las 23:47. Un cliente escribe a tu negocio. ¿Quién contesta?</span>
+            <button id="playBtn" class="cta-glow" type="button" style="border:0;background:#B8F23C;color:#0E3B4A;font-family:'Sora',sans-serif;font-weight:700;font-size:16px;padding:16px 28px;border-radius:14px;min-height:48px">Ver qué pasa</button>
+          </div>
+          <div id="chat" aria-live="polite" style="display:flex;flex-direction:column;gap:10px"></div>
+        </div>
+
+        <div id="doneBox" class="rise" hidden style="background:rgba(184,242,60,.12);border:1px solid rgba(184,242,60,.4);border-radius:18px;padding:20px;flex-direction:column;gap:14px">
+          <span id="doneText" style="font-family:'Sora',sans-serif;font-weight:700;font-size:18px;line-height:1.3;color:#B8F23C"></span>
+          <span style="font-size:15px;line-height:1.5;color:#E3EEF0">Esto pasa en tu negocio cada día, sin que tú muevas un dedo. Los <span data-bind="monthly">0</span> € de la izquierda, en tu agenda.</span>
+          <a class="btn" href="https://calendly.com/agencyloopless/30min" style="align-self:flex-start;background:#B8F23C;color:#0E3B4A;text-decoration:none;font-weight:700;font-size:15px;padding:14px 22px;border-radius:12px">Quiero esto en mi negocio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ANTES / DESPUÉS ========== -->
+<section style="background:#fff;padding:104px 0;border-top:1px solid #E8E4D5">
+  <div class="wrap" style="display:flex;flex-direction:column;gap:56px">
+    <div data-reveal="up" style="max-width:720px;display:flex;flex-direction:column;gap:14px">
+      <span class="eyebrow" style="color:#3E5A64">La diferencia</span>
+      <h2 class="h2">Tu negocio, antes y después de Loopless.</h2>
+      <p style="margin:0;font-size:18px;line-height:1.55;color:#3E5A64">Mismo negocio, mismos clientes. La única diferencia es quién contesta cuando tú no puedes.</p>
+    </div>
+
+    <div data-reveal="up" style="background:#F5F3EA;border:1px solid #E1DDCC;border-radius:28px;padding:32px;display:flex;flex-direction:column;gap:24px">
+      <span style="font-family:'Sora',sans-serif;font-weight:700;font-size:18px">Las horas en las que alguien contesta a tus clientes</span>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span style="font-size:14px;font-weight:600;color:#3E5A64">Sin Loopless</span>
+        <div data-reveal="bar" style="display:flex;height:54px;border-radius:14px;overflow:hidden;border:1.5px solid #0E3B4A">
+          <div style="flex:9;background:repeating-linear-gradient(135deg,rgba(14,59,74,.16) 0 7px,#F5F3EA 7px 14px);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#0E3B4A;white-space:nowrap;overflow:hidden;padding:0 6px"><span style="background:#F5F3EA;padding:3px 8px;border-radius:8px">Nadie responde</span></div>
+          <div style="flex:10;background:#0E3B4A;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#F5F3EA;white-space:nowrap;overflow:hidden;padding:0 6px">Tú contestas</div>
+          <div style="flex:5;background:repeating-linear-gradient(135deg,rgba(14,59,74,.16) 0 7px,#F5F3EA 7px 14px);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#0E3B4A;white-space:nowrap;overflow:hidden;padding:0 6px"><span style="background:#F5F3EA;padding:3px 8px;border-radius:8px">Nadie</span></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <span style="font-size:14px;font-weight:600;color:#3E5A64">Con Loopless</span>
+        <div data-reveal="bar" style="display:flex;height:54px;border-radius:14px;overflow:hidden;background:#B8F23C;border:1.5px solid #0E3B4A;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#0E3B4A;padding:0 10px;text-align:center">Alguien responde. 24 horas, 7 días a la semana.</div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:12px;color:#4C6770;font-weight:500"><span>0:00</span><span>9:00</span><span>19:00</span><span>24:00</span></div>
+      <span style="font-size:13px;line-height:1.5;color:#4C6770">Ejemplo con un horario de 9:00 a 19:00. Las zonas rayadas son clientes que escriben y se quedan sin respuesta.</span>
+    </div>
+
+    <div id="baRows" style="display:flex;flex-direction:column;gap:20px"></div>
+  </div>
+</section>
+
+<!-- ========== IMPLEMENTACIÓN ========== -->
+<section style="background:#0E3B4A;color:#F5F3EA;padding:104px 0;position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(245,243,234,.06) 1px,transparent 1.2px);background-size:26px 26px;pointer-events:none"></div>
+  <div class="blob" style="width:420px;height:420px;background:#B8F23C;opacity:.08;right:-140px;top:30%;animation:drift 24s ease-in-out infinite"></div>
+  <div class="wrap" style="position:relative;display:flex;flex-direction:column;gap:52px">
+    <div data-reveal="up" style="max-width:740px;display:flex;flex-direction:column;gap:14px">
+      <span class="eyebrow" style="color:#B8F23C">Sin fricción</span>
+      <h2 class="h2">Tú no instalas nada. Nosotros lo hacemos todo.</h2>
+      <p style="margin:0;font-size:18px;line-height:1.55;color:#C9DCE0">De la primera llamada al primer cliente reservado por el asistente, tu única tarea es contarnos cómo trabajas.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:22px">
+      <div class="step-w" data-reveal="up">
+        <div class="step">
+          <span class="step-n" aria-hidden="true">01</span>
+          <span class="step-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0E3B4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
+          <h3>Auditoría gratuita</h3>
+          <p>Una videollamada de 30 minutos. Nos cuentas cómo atiendes hoy a tus clientes y miramos juntos dónde se te escapan citas. Sales sabiendo cuánto estás perdiendo y qué se puede automatizar en tu caso.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="chip">30 minutos</span><span class="chip">Videollamada</span><span class="chip">Sin compromiso</span></div>
+          <span class="step-foot"><strong>Tu parte:</strong> contarnos cómo trabajas.</span>
+        </div>
+      </div>
+      <div class="step-w" data-reveal="up">
+        <div class="step">
+          <span class="step-n" aria-hidden="true">02</span>
+          <span class="step-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0E3B4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></span>
+          <h3>Lo montamos por ti</h3>
+          <p>Trabajamos y conectamos las herramientas que ya usas: tu agenda, tu calendario y tu WhatsApp. Cargamos tus horarios, tus servicios y tu forma de hablar. No cambias de programa ni aprendes nada nuevo.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="chip">Tus herramientas de siempre</span><span class="chip">Con tu forma de hablar</span></div>
+          <span class="step-foot"><strong>Tu parte:</strong> ninguna. Lo hacemos nosotros.</span>
+        </div>
+      </div>
+      <div class="step-w" data-reveal="up">
+        <div class="step">
+          <span class="step-n" aria-hidden="true">03</span>
+          <span class="step-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0E3B4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v8"/><path d="M6.3 6.8a8 8 0 1 0 11.4 0"/></svg></span>
+          <h3>Lo probamos y se enciende</h3>
+          <p>Lo probamos contigo hasta que suene a tu negocio. Lo activamos en tu WhatsApp y empiezas a recibir reservas, cambios y cancelaciones mientras haces otra cosa. Después nos encargamos del mantenimiento.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="chip">Pruebas contigo</span><span class="chip">Mantenimiento incluido</span></div>
+          <span class="step-foot"><strong>Tu parte:</strong> ver cómo entran las citas.</span>
+        </div>
+      </div>
+    </div>
+
+    <div data-reveal="up" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px 28px;text-align:center">
+      <a class="btn" href="https://calendly.com/agencyloopless/30min" style="background:#B8F23C;color:#0E3B4A;text-decoration:none;font-family:'Sora',sans-serif;font-weight:700;font-size:17px;padding:18px 30px;border-radius:14px">Quiero mi auditoría gratuita</a>
+      <span style="font-size:15px;color:#C9DCE0">Empieza por el paso 1. Es gratis y sin compromiso.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FAQ ========== -->
+<section style="background:#F5F3EA;padding:104px 0">
+  <div class="wrap" style="display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start">
+    <div data-reveal="left" style="flex:1 1 300px;min-width:0;display:flex;flex-direction:column;gap:18px">
+      <span class="eyebrow" style="color:#3E5A64">Preguntas frecuentes</span>
+      <h2 class="h2" style="font-size:clamp(30px,4vw,42px)">Lo que casi todos nos preguntan antes de empezar.</h2>
+      <div style="background:#0E3B4A;color:#F5F3EA;border-radius:22px;padding:26px;display:flex;flex-direction:column;gap:12px;margin-top:8px">
+        <span style="font-family:'Sora',sans-serif;font-weight:700;font-size:18px">¿Tienes otra duda?</span>
+        <span style="font-size:15px;line-height:1.5;color:#C9DCE0">Escríbenos y te respondemos nosotros, con personas de verdad.</span>
+        <a class="btn" href="https://wa.me/34637685900" style="align-self:flex-start;background:#B8F23C;color:#0E3B4A;text-decoration:none;font-weight:700;font-size:15px;padding:12px 20px;border-radius:12px">Escribir por WhatsApp</a>
+      </div>
+    </div>
+    <div id="faq" style="flex:2 1 520px;min-width:0;display:flex;flex-direction:column;gap:12px"></div>
+  </div>
+</section>
+
+<!-- ========== CIERRE ========== -->
+<section style="background:#08262F;padding:96px 0 104px">
+  <div class="wrap">
+    <div data-reveal="zoom" style="position:relative;overflow:hidden;background:#0E3B4A;border:1px solid rgba(184,242,60,.3);border-radius:40px;padding:clamp(28px,6vw,72px);display:flex;flex-wrap:wrap;gap:48px;align-items:center;box-shadow:0 40px 90px rgba(0,0,0,.35)">
+      <img class="spin-slow" src="assets/isotipo.svg" alt="" aria-hidden="true" width="560" height="560" style="position:absolute;right:-170px;bottom:-190px;opacity:.08;pointer-events:none">
+
+      <div style="position:relative;flex:1 1 440px;min-width:0;display:flex;flex-direction:column;gap:26px">
+        <span style="align-self:flex-start;display:inline-flex;align-items:center;gap:10px;background:rgba(184,242,60,.1);border:1px solid rgba(184,242,60,.4);color:#B8F23C;font-size:13px;font-weight:600;padding:8px 16px;border-radius:999px"><span class="pulse" style="width:8px;height:8px;border-radius:50%;background:#B8F23C"></span>Cada día cuenta</span>
+        <h2 style="margin:0;font-family:'Sora',sans-serif;font-weight:800;font-size:clamp(32px,4.8vw,54px);line-height:1.06;letter-spacing:-0.025em;color:#F5F3EA">Cada día sin asistente, <span style="color:#B8F23C">otro cliente se va con tu competencia.</span></h2>
+        <p style="margin:0;font-size:clamp(17px,2vw,19px);line-height:1.6;color:#C9DCE0;max-width:520px">Mientras lo piensas, tu WhatsApp sigue recibiendo mensajes a deshoras. La auditoría es gratis; esperar, no.</p>
+        <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start">
+          <a class="btn cta-glow" href="https://calendly.com/agencyloopless/30min" style="background:#B8F23C;color:#0E3B4A;text-decoration:none;font-family:'Sora',sans-serif;font-weight:700;font-size:19px;padding:22px 38px;border-radius:18px">Quiero mi auditoría gratuita</a>
+          <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="pill">Gratis</span><span class="pill">30 minutos</span><span class="pill">Sin compromiso</span></div>
+        </div>
+      </div>
+
+      <div style="position:relative;flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:12px">
+        <span style="font-size:14px;font-weight:600;color:#A9C6CD">Según tu simulación, lo que dejas escapar</span>
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;background:#08262F;border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:20px 24px"><span style="font-size:15px;color:#C9DCE0">Cada día</span><span style="font-family:'Sora',sans-serif;font-weight:800;font-size:30px;color:#B8F23C;font-variant-numeric:tabular-nums"><span data-bind="daily">0</span> €</span></div>
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;background:#08262F;border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:20px 24px"><span style="font-size:15px;color:#C9DCE0">Cada semana</span><span style="font-family:'Sora',sans-serif;font-weight:800;font-size:30px;color:#B8F23C;font-variant-numeric:tabular-nums"><span data-bind="weekly">0</span> €</span></div>
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;background:#B8F23C;border-radius:20px;padding:22px 24px"><span style="font-size:15px;font-weight:600;color:#0E3B4A">Cada mes</span><span style="font-family:'Sora',sans-serif;font-weight:800;font-size:36px;color:#0E3B4A;font-variant-numeric:tabular-nums"><span data-bind="monthly">0</span> €</span></div>
+        <a class="link" href="#calculadora" style="font-size:14px;font-weight:600;color:#F5F3EA;text-decoration:underline;text-underline-offset:4px;margin-top:4px">Ajusta tus números en la calculadora ↑</a>
+      </div>
+    </div>
+
+    <div data-reveal="up" style="margin-top:36px;display:flex;flex-wrap:wrap;gap:12px 14px;justify-content:center;align-items:center;font-size:15px;color:#C9DCE0">
+      <span>¿Prefieres hablarlo ya?</span>
+      <a class="btn" href="https://wa.me/34637685900" style="color:#F5F3EA;text-decoration:none;font-weight:600;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:10px 18px">WhatsApp 637 685 900</a>
+      <a class="btn" href="mailto:agencyloopless@gmail.com" style="color:#F5F3EA;text-decoration:none;font-weight:600;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:10px 18px">agencyloopless@gmail.com</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot" style="background:#06191F;color:#A9C6CD;padding:40px 0 34px;font-size:14px">
+  <div class="wrap" style="display:flex;flex-wrap:wrap;gap:20px 32px;align-items:center;justify-content:space-between">
+    <a class="logo" href="./" aria-label="Loopless Agency, inicio" style="font-family:'Sora',sans-serif;font-weight:700;font-size:17px;color:#F5F3EA">
+      <img src="assets/isotipo.svg" width="28" height="28" alt="">
+      <span>Loopless <span style="font-weight:500;color:#A9C6CD">Agency</span></span>
+    </a>
+    <nav aria-label="Legal" style="display:flex;flex-wrap:wrap;gap:8px 24px">
+      <a href="aviso-legal.html">Aviso legal</a>
+      <a href="politica-privacidad.html">Política de privacidad</a>
+      <a href="politica-cookies.html">Política de cookies</a>
+    </nav>
+  </div>
+  <div class="wrap" style="margin-top:22px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;font-size:13px">
+    <span>© 2026 Loopless Agency · Asistentes de WhatsApp que llenan tu agenda</span>
+    <span>Iván Falcón Macho · <a href="mailto:agencyloopless@gmail.com">agencyloopless@gmail.com</a></span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var fmt = function (n) { return Math.round(n).toLocaleString('es-ES'); };
+  var reduce = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+  /* ---------- Calculadora ---------- */
+  var st = { msgs: 30, value: 60, share: 0.33, noshows: 5 };
+  var shareOpts = [
+    { label: 'Pocos', sub: '1 de cada 5', val: 0.2 },
+    { label: 'Bastantes', sub: '1 de cada 3', val: 0.33 },
+    { label: 'Muchos', sub: '1 de cada 2', val: 0.5 }
+  ];
+  var shareWrap = $('#shareOpts');
+
+  function paintShare() {
+    shareWrap.innerHTML = '';
+    shareOpts.forEach(function (o) {
+      var on = st.share === o.val;
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.style.cssText = 'border:1.5px solid #0E3B4A;border-radius:12px;padding:10px 14px;min-height:44px;font-size:14px;font-weight:600;text-align:left;line-height:1.25;transition:background .2s,color .2s,transform .15s;background:' + (on ? '#0E3B4A' : '#fff') + ';color:' + (on ? '#F5F3EA' : '#0E3B4A');
+      b.innerHTML = o.label + '<br><span style="font-weight:400;font-size:12px">' + o.sub + '</span>';
+      b.addEventListener('click', function () { st.share = o.val; paintShare(); calc(); });
+      shareWrap.appendChild(b);
+    });
+  }
+
+  /* Números que "cuentan" hasta su valor nuevo */
+  var els = {}, cur = {}, raf = {};
+  document.querySelectorAll('[data-bind]').forEach(function (el) {
+    var k = el.getAttribute('data-bind');
+    (els[k] = els[k] || []).push(el);
+  });
+  function write(k, v) { els[k].forEach(function (el) { el.textContent = fmt(v); }); }
+  function setBind(k, to) {
+    if (!els[k]) return;
+    if (cur[k] === undefined || reduce) { cur[k] = to; write(k, to); return; }
+    cancelAnimationFrame(raf[k]);
+    var from = cur[k], t0 = null, dur = 450;
+    function step(ts) {
+      if (t0 === null) t0 = ts;
+      var p = Math.min(1, (ts - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      cur[k] = from + (to - from) * e;
+      write(k, cur[k]);
+      if (p < 1) raf[k] = requestAnimationFrame(step);
+      else { cur[k] = to; write(k, to); }
+    }
+    raf[k] = requestAnimationFrame(step);
+  }
+
+  function fill(el) { el.style.setProperty('--p', ((el.value - el.min) / (el.max - el.min) * 100) + '%'); }
+
+  function calc() {
+    var lostAppts = st.msgs * 4.33 * st.share * 0.4 + st.noshows;
+    var monthly = Math.round((lostAppts * st.value) / 10) * 10;
+    setBind('monthly', monthly);
+    setBind('annual', monthly * 12);
+    setBind('appts', lostAppts);
+    setBind('daily', monthly / 30);
+    setBind('weekly', monthly / 4.33);
+    $('#msgsOut').textContent = st.msgs;
+    $('#valueOut').textContent = st.value + ' €';
+    $('#noshowsOut').textContent = st.noshows;
+  }
+
+  ['msgs', 'value', 'noshows'].forEach(function (id) {
+    var el = $('#' + id);
+    fill(el);
+    el.addEventListener('input', function (e) { st[id] = Number(e.target.value); fill(el); calc(); });
+  });
+  paintShare();
+  calc();
+
+  /* ---------- Simulador de chat ---------- */
+  var scripts = {
+    night: [
+      { bot: false, time: '23:47', text: 'Hola, buenas. ¿Tenéis hueco esta semana? Me urge.' },
+      { bot: true, time: '23:47', text: '¡Hola! Claro que sí, te ayudo ahora mismo. ¿Para qué servicio buscas cita?' },
+      { bot: false, time: '23:48', text: 'Una sesión, a poder ser el jueves por la tarde' },
+      { bot: true, time: '23:48', text: 'El jueves tengo libre a las 17:00 y a las 18:30. ¿Cuál te va mejor?' },
+      { bot: false, time: '23:48', text: 'A las 17:00' },
+      { bot: true, time: '23:48', text: 'Hecho. Tu cita queda reservada para el jueves a las 17:00. Te escribiré el día antes para recordártelo.' }
+    ],
+    cancel: [
+      { bot: false, time: '21:15', text: 'Perdona, mañana a las 10:00 ya no puedo ir. Me ha surgido algo.' },
+      { bot: true, time: '21:15', text: 'Sin problema, gracias por avisar. He cancelado tu cita de mañana a las 10:00. ¿Quieres que te busque otro día?' },
+      { bot: false, time: '21:16', text: 'Sí, mejor el viernes por la mañana' },
+      { bot: true, time: '21:16', text: 'El viernes tengo libre a las 10:30. ¿Te lo reservo?' },
+      { bot: false, time: '21:16', text: 'Perfecto' },
+      { bot: true, time: '21:16', text: 'Reservado: viernes a las 10:30. ¡Nos vemos entonces!' }
+    ]
+  };
+  var doneTexts = {
+    night: 'Cita reservada a las 23:48. Tú estabas durmiendo.',
+    cancel: 'Cancelación avisada con casi 13 horas de margen: el hueco de mañana vuelve a estar disponible.'
+  };
+  var tabDefs = [
+    { id: 'night', label: 'Escribe a las 23:47' },
+    { id: 'cancel', label: 'Cancela a última hora' }
+  ];
+  var tabsEl = $('#tabs'), chatEl = $('#chat'), introEl = $('#intro'), doneBox = $('#doneBox');
+  var timers = [], current = null;
+
+  function paintTabs() {
+    tabsEl.innerHTML = '';
+    tabDefs.forEach(function (t) {
+      var on = current === t.id;
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = t.label;
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.style.cssText = 'border:1.5px solid #B8F23C;border-radius:999px;padding:10px 16px;min-height:44px;font-size:14px;font-weight:600;transition:background .2s,color .2s;background:' + (on ? '#B8F23C' : 'transparent') + ';color:' + (on ? '#0E3B4A' : '#F5F3EA');
+      b.addEventListener('click', function () { play(t.id); });
+      tabsEl.appendChild(b);
+    });
+  }
+
+  function addBubble(m) {
+    var wrap = document.createElement('div');
+    wrap.className = 'rise';
+    var bub = document.createElement('div');
+    var base = 'max-width:84%;font-size:15px;line-height:1.4;padding:10px 14px;';
+    bub.style.cssText = base + (m.bot
+      ? 'margin-left:auto;background:#B8F23C;color:#0E3B4A;border-radius:16px 16px 4px 16px'
+      : 'background:#F5F3EA;color:#0E3B4A;border-radius:16px 16px 16px 4px');
+    bub.appendChild(document.createTextNode(m.text));
+    var t = document.createElement('div');
+    t.textContent = m.time;
+    t.style.cssText = 'font-size:11px;text-align:right;margin-top:4px;color:' + (m.bot ? '#2E5B1A' : '#4C6770');
+    bub.appendChild(t);
+    wrap.appendChild(bub);
+    chatEl.appendChild(wrap);
+  }
+  function showTyping() {
+    var d = document.createElement('div');
+    d.id = 'typing';
+    d.className = 'rise';
+    d.setAttribute('aria-label', 'El asistente está escribiendo');
+    d.style.cssText = 'align-self:flex-end;background:#B8F23C;border-radius:16px 16px 4px 16px;padding:14px 16px';
+    d.innerHTML = '<span class="dot"></span><span class="dot"></span><span class="dot"></span>';
+    chatEl.appendChild(d);
+  }
+  function hideTyping() { var d = $('#typing'); if (d) d.remove(); }
+
+  function play(id) {
+    timers.forEach(clearTimeout); timers = [];
+    current = id;
+    paintTabs();
+    introEl.style.display = 'none';
+    chatEl.innerHTML = '';
+    doneBox.hidden = true;
+    doneBox.style.display = '';
+    var t = 500;
+    scripts[id].forEach(function (m) {
+      if (m.bot) { timers.push(setTimeout(showTyping, t)); t += 1000; }
+      timers.push(setTimeout(function () { hideTyping(); addBubble(m); }, t));
+      t += m.bot ? 900 : 800;
+    });
+    timers.push(setTimeout(function () {
+      $('#doneText').textContent = doneTexts[id];
+      doneBox.hidden = false;
+      doneBox.style.display = 'flex';
+    }, t));
+  }
+  $('#playBtn').addEventListener('click', function () { play('night'); });
+  paintTabs();
+
+  /* ---------- Antes / Después ---------- */
+  var X = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F5F3EA" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+  var OK = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0E3B4A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>';
+  var ARROW = '<svg class="arrow-n" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0E3B4A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>';
+  var rows = [
+    ['Mensajes fuera de horario', 'Contestas mensajes de clientes desde el sofá, a las 23:00.', 'Cada mensaje, respondido en segundos: de día, de noche y en festivo.'],
+    ['Clientes impacientes', 'Escriben a las 22:00, nadie responde y reservan con otro.', 'Reservan solos y tú ves la cita directamente en tu agenda.'],
+    ['Cancelaciones', 'Las cancelaciones de última hora dejan huecos que ya no se llenan.', 'Cancelaciones y cambios gestionados al momento, con el hueco otra vez disponible.'],
+    ['Recepción', 'La recepción es un cuello de botella, o directamente no existe.', 'Una recepción que nunca se va a casa.'],
+    ['Tu tiempo libre', 'El móvil del trabajo manda en tus cenas y en tus fines de semana.', 'Cenas en familia con el móvil boca abajo.']
+  ];
+  $('#baRows').innerHTML = rows.map(function (r) {
+    return '<div style="display:flex;flex-direction:column;gap:10px">' +
+      '<span data-reveal="up" style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3E5A64">' + r[0] + '</span>' +
+      '<div class="ba-row">' +
+        '<div class="ba-before" data-reveal="left"><span class="ba-ico" style="background:#0E3B4A">' + X + '</span><span>' + r[1] + '</span></div>' +
+        '<div class="ba-arrow" data-reveal="zoom">' + ARROW + '</div>' +
+        '<div class="ba-after" data-reveal="right"><span class="ba-ico ico-pop" style="background:#B8F23C">' + OK + '</span><span>' + r[2] + '</span></div>' +
+      '</div></div>';
+  }).join('');
+
+  /* ---------- FAQ ---------- */
+  var faqs = [
+    ['¿Necesito saber de tecnología?', 'No. Nosotros configuramos todo y trabajamos con las herramientas que ya usas. Tú solo nos cuentas cómo funciona tu negocio: horarios, servicios y cómo te gusta atender a tus clientes.'],
+    ['¿Qué incluye la auditoría gratuita?', 'Una videollamada de 30 minutos en la que revisamos cómo atiendes hoy los mensajes y las citas, calculamos dónde se te escapan clientes y te explicamos qué se puede automatizar en tu caso. No tiene coste ni compromiso.'],
+    ['¿Tengo que cambiar de agenda o de herramientas?', 'No. Nos conectamos a lo que ya usas, así que no tienes que aprender un programa nuevo ni cambiar tu forma de trabajar.'],
+    ['¿Cuánto cuesta?', 'Depende de lo que haya que automatizar en tu negocio. En la auditoría gratuita lo vemos contigo y te damos un presupuesto claro, sin compromiso. Normalmente hay un pago único por la instalación y una cuota mensual de mantenimiento.'],
+    ['¿Y si algo falla después de instalarlo?', 'No te dejamos solo. Nos encargamos del mantenimiento y de mantenerlo al día, para que siga funcionando cuando cambien tus horarios, tus servicios o tus precios.'],
+    ['¿Y si un cliente prefiere hablar con una persona?', 'El asistente se ocupa de lo repetitivo: horarios, dudas, reservas y cancelaciones. Lo dejamos configurado para que, cuando una conversación lo necesite, te la pase a ti en lugar de improvisar.'],
+    ['¿Están seguros los datos de mis clientes?', 'Solo se usa la información necesaria para atender y agendar a tus clientes. En la auditoría te explicamos con detalle cómo se trata cada dato, antes de que decidas nada. Puedes leer también nuestra política de privacidad.']
+  ];
+  var faqEl = $('#faq');
+  faqs.forEach(function (f, i) {
+    var item = document.createElement('div');
+    item.className = 'faq-item' + (i === 0 ? ' open' : '');
+    item.setAttribute('data-reveal', 'up');
+    item.innerHTML =
+      '<button type="button" class="faq-q" aria-expanded="' + (i === 0) + '" aria-controls="faq-a-' + i + '">' +
+        '<span class="t"></span>' +
+        '<span class="faq-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0E3B4A" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>' +
+      '</button>' +
+      '<div class="faq-wrap"><div class="faq-a" id="faq-a-' + i + '"><p></p></div></div>';
+    item.querySelector('.t').textContent = f[0];
+    item.querySelector('.faq-a p').textContent = f[1];
+    item.querySelector('.faq-q').addEventListener('click', function () {
+      var open = !item.classList.contains('open');
+      item.classList.toggle('open', open);
+      this.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    faqEl.appendChild(item);
+  });
+})();
+</script>
+
+<script>
+/* Aparición al hacer scroll. Va en un script aparte: si algo falla arriba, el contenido nunca queda oculto. */
+(function () {
+  var items = [].slice.call(document.querySelectorAll('[data-reveal]'));
+  function showAll() { items.forEach(function (el) { el.classList.add('in'); }); }
+  try {
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) { showAll(); return; }
+    items.forEach(function (el) {
+      var sibs = [].filter.call(el.parentNode.children, function (c) { return c.hasAttribute('data-reveal'); });
+      el.style.setProperty('--d', Math.min(sibs.indexOf(el) * 0.1, 0.5) + 's');
+    });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    items.forEach(function (el) { io.observe(el); });
+    setTimeout(function () { /* seguro anti-bloqueo */
+      items.forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('in');
+      });
+    }, 1500);
+  } catch (e) { showAll(); }
+})();
+</script>
+</body>
+</html>
